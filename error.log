@@ -1,0 +1,50 @@
+not ok 1 - use Padre::Config;
+#   Failed test 'use Padre::Config;'
+#   at -e line 1.
+#     Tried to use 'Padre::Config'.
+#     Error:  Failed to find share dir for dist 'Padre' at C:/Users/TOSH/Documents/GitHub/dwimperl-windows/strawberry-perl-5.20.0.1-32bit-portable/perl/vendor/lib/File/ShareDir.pm line 173.
+# 	File::ShareDir::dist_dir("Padre") called at lib/Padre/Util.pm line 408
+# 	Padre::Util::share() called at lib/Padre/Util.pm line 413
+# 	Padre::Util::sharedir("themes") called at lib/Padre/Config.pm line 539
+# 	Padre::Config::themes("Padre::Config") called at lib/Padre/Config.pm line 1401
+# 	require Padre/Config.pm called at -e line 1
+# 	main::BEGIN() called at lib/Padre/Config.pm line 0
+# 	eval {...} called at lib/Padre/Config.pm line 0
+# 	eval 'package main;
+# 
+# #line 1 -e
+# use Padre::Config @{$args[0]};
+# 1;
+# ' called at C:/Users/TOSH/Documents/GitHub/dwimperl-windows/strawberry-perl-5.20.0.1-32bit-portable/perl/site/lib/Test/More.pm line 993
+# 	Test::More::_eval("package main;\x{a}\x{a}#line 1 -e\x{a}use Padre::Config \@{\$args[0]};\x{a}1;\x{a}", ARRAY(0x24fcaf4)) called at C:/Users/TOSH/Documents/GitHub/dwimperl-windows/strawberry-perl-5.20.0.1-32bit-portable/perl/site/lib/Test/More.pm line 968
+# 	Test::More::use_ok("Padre::Config") called at -e line 1
+# Compilation failed in require at -e line 1.
+# BEGIN failed--compilation aborted at -e line 1.
+1..1
+# Looks like you failed 1 test of 1.
+
+File::ShareDir::dist_dir('Padre')
+
+perl -Ilib -MCarp::Always -e "File::ShareDir::dist_dir('Padre')" > error2.log 2>&1
+perl -Ilib -MCarp::Always -MFile::ShareDir -e "File::ShareDir::dist_dir('Padre')" 
+
+> error2.log 2>&1
+
+
+dist_dir('File-ShareDir')
+
+perl -Ilib -MCarp::Always -e "use Padre::Config"
+perl -Ilib -MCarp::Always -e "use Padre::Config"
+
+use Test::More;
+
+diag dist_dir('My-Dist');
+
+use File::ShareDir qw(dist_dir);
+perl -Ilib -MCarp::Always -M"File::ShareDir qw(dist_dir)" -e "File::ShareDir::dist_dir('Padre')" 
+perl -Ilib M"File::ShareDir qw(dist_dir)" -e "File::ShareDir::dist_dir('Padre')" 
+perl -Ilib -mFile::ShareDir=dist_dir -e "File::ShareDir::dist_dir('Padre')" 
+
+-mMODULE=foo,bar
+
+http://stackoverflow.com/questions/9671029/how-do-i-test-my-module-that-uses-filesharedir
